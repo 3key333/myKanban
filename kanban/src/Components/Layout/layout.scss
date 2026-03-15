@@ -1,0 +1,91 @@
+
+// HEADER
+
+header{
+    z-index: 2; // чтобы портал не перекрывал кнопку
+    background-color: rgba(0, 103, 163, 1);
+}
+
+.header-inner{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+
+    h1{
+        font-size: 28px;
+        font-weight: 400;
+
+        color: #fff;
+    }
+
+    .header-avatar {
+        display: flex;
+        align-items: center;
+
+        & > img:first-of-type{
+            margin-right: 5px;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+    }
+}
+
+
+// FOOTER 
+
+footer{
+    background-color: rgba(0, 103, 163, 1);
+}
+
+.footer-inner{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+
+    .tasks-info{
+        color: #fff;
+
+        font-size: 18px;
+        font-weight: 400;
+
+        display: flex;
+
+        & > p:first-of-type{
+            margin-right: 35px;
+        }
+    }
+
+    & > p{
+        color: #fff;
+
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+
+// MAIN
+
+main{
+    flex: 1;  // займет все оставшееся пространство 
+    background-color: rgba(0, 121, 191, 1);
+
+    display: flex;
+    justify-content: center;
+}
+
+
+// PORTAL
+
+.portal-par{
+    font-weight: 400;
+    font-size: 18px;
+    display: block;
+
+    &:hover{
+        text-decoration: underline;
+    }
+
+    &:first-of-type{
+        margin-bottom: 5px;
+    }
+}

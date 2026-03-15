@@ -1,0 +1,21 @@
+.card{
+    margin-top: 40px;
+    margin: 20px;
+    width: 282px;
+}
+
+.card-inner{
+    padding: 12px;
+    background-color: rgba(235, 236, 240, 1);
+
+    .card-title{
+        font-weight: 400;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+}
+
+.card-button > button{
+    border: 0px;
+    color: rgba(94, 108, 132, 1);
+}
