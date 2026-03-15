@@ -4,9 +4,14 @@ import arrowDown from '../../assets/images/arrow-down.svg'
 import arrowUp from '../../assets/images/arrow-up.svg'
 import Card from '../../Components/Cards/card'
 import { useState } from 'react'
-import usePortal from '../Portal/portal'
+import usePortal from '../Portal/portalAvatar'
+import { useContext } from 'react'
+import { KanbanContext } from '../Context/kanbanContext'
 
 const Layout = () => {
+
+    const { columns } = useContext(KanbanContext)
+    console.log(columns.Backlog.length)
 
     const cardsData = ['Backlog', 'Ready', 'In Progress', 'Finished']
 
@@ -41,7 +46,7 @@ const Layout = () => {
         <main>
 
             {cardsData.map((title) => (
-                <Card title={title}/>
+                <Card key={title} title={title}/>
             ))}
 
         </main>
@@ -50,9 +55,9 @@ const Layout = () => {
             <div className="footer-inner">
 
                 <div className="tasks-info">
-                    <p>Active tasks: 0</p>
+                    <p>Active tasks: {columns.Backlog.length}</p>
 
-                    <p>Finished tasks: 0</p>
+                    <p>Finished tasks: {columns['Finished'].length}</p>
                 </div>
 
                 <p>Kanban board by  Ilya, 2026</p>

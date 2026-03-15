@@ -15,7 +15,40 @@
     }
 }
 
+.card-button{
+    display: flex;
+    justify-content: space-between;
+}
+
 .card-button > button{
     border: 0px;
     color: rgba(94, 108, 132, 1);
 }
+
+.title-task_input{
+    border: 0;
+}
+
+.task {
+    padding: 5px;
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+.ready-dropDown {
+    .dropdown-item {
+        padding: 5px;
+        background-color: #fff;
+        width: 219px;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+    .dropdown-item:hover {
+        background-color: rgb(214, 214, 214);
+    }
+}
+
+.card-button > button{
+    cursor: pointer;
+}
+

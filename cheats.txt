@@ -1,0 +1,829 @@
+// ====== МЕТОДЫ======
+строка.replace(чтo_мeняeм, нa_чтo_мeняeм)
+
+       Паттерн	  Что значит	                    Пример
+//     /а/g	      все буквы "а"	                  "банан" → "бннн"
+//     /а/gi	    все "а" без учета регистра      "БАнАн" → "Бннн"
+//     /\d/g	    все цифры	                      "Цена: 100$" → "Цена: $"
+//     /\D/g	    НЕ цифры	                      "Тел: +7(999)123" → "7999123"
+//     /\s/g	    все пробелы	                    "a b c" → "abc"
+//     /\S/g	    НЕ пробелы	                    "a b c" → "a b c"
+//     /./g	      любой символ	                  "abc" → "xxx"
+
+1. Основные.для.работы:
+
+// ДОБАВЛЕНИЕ/УДАЛЕНИЕ
+arr.push(element)      // добавить в конец
+arr.pop()              // удалить последний
+arr.unshift(element)   // добавить в начало  
+arr.shift()            // удалить первый
+
+// ПЕРЕБОР
+arr.forEach(func)      // для каждого элемента
+arr.map(func)          // преобразовать все элементы
+arr.filter(func)       // отфильтровать по условию
+arr.find(func)         // найти первый подходящий
+arr.includes(element)  // проверить наличие
+
+// ПРЕОБРАЗОВАНИЕ
+arr.join(separator)    // объединить в строку
+arr.concat(arr2)       // объединить массивы
+arr.slice(start, end)  // вырезать часть
+arr.splice(start, del, ...items) // удалить/вставить
+
+// ПОИСК
+arr.indexOf(element)   // найти индекс элемента
+arr.lastIndexOf(element) // найти с конца
+
+// СОРТИРОВКА
+arr.sort((a,b)=>a-b)             // отсортировать по возростанию, если по убыванию то b-a
+arr.reverse()          // перевернуть
+
+// ПРОВЕРКА
+arr.every(func)        // все элементы удовлетворяют?
+arr.some(func)         // хотя бы один удовлетворяет?
+
+// СВОРАЧИВАНИЕ
+arr.reduce(func, initial) // "свернуть" массив в одно значение
+
+2. Самые важные (выучить в первую очередь):
+javascript
+// 1. push/pop - работа с концом массива
+let arr = [1, 2, 3];
+arr.push(4);    // [1, 2, 3, 4]
+arr.pop();      // [1, 2, 3]
+
+// 2. forEach - перебор всех элементов
+arr.forEach(item => console.log(item));
+
+// 3. map - преобразовать все элементы
+let doubled = arr.map(x => x * 2); // [2, 4, 6]
+
+// 4. filter - отфильтровать
+let even = arr.filter(x => x % 2 === 0); // [2]
+
+// 5. find - найти элемент
+let found = arr.find(x => x > 1); // 2
+
+// 6. includes - проверить наличие
+arr.includes(2); // true
+
+// 7. join - массив в строку
+arr.join(', '); // "1, 2, 3"
+
+// 8. slice - вырезать часть
+arr.slice(1, 3); // [2, 3] (с 1 индекса до 3 не включительно)
+
+СТРОКИ (String)
+1. Основные для работы:
+
+javascript
+// ДЛИНА И ДОСТУП
+str.length             // длина строки
+str[index]             // символ по индексу
+str.charAt(index)      // символ по индексу (старый способ)
+
+// РЕГИСТР
+str.toUpperCase()      // в ВЕРХНИЙ регистр
+str.toLowerCase()      // в нижний регистр
+
+// ПОИСК
+str.includes(substr)   // содержит подстроку?
+str.indexOf(substr)    // индекс начала подстроки
+str.lastIndexOf(substr) // поиск с конца
+str.startsWith(substr) // начинается с?
+str.endsWith(substr)   // заканчивается на?
+
+// ИЗМЕНЕНИЕ
+str.replace(old, new)  // заменить
+str.trim()             // убрать пробелы с краёв
+str.slice(start, end)  // вырезать часть
+str.substring(start, end) // почти как slice
+str.split(separator)   // разбить на массив
+
+// ПОВТОРЕНИЕ
+str.repeat(count)      // повторить строку
+2. Самые важные (выучить в первую очередь):
+
+let str = "Hello World";
+
+// 1. length - длина
+str.length; // 11
+
+// 2. toUpperCase/toLowerCase - регистр
+str.toUpperCase(); // "HELLO WORLD"
+str.toLowerCase(); // "hello world"
+
+// 3. includes - содержит ли
+str.includes("World"); // true
+
+// 4. indexOf - найти позицию
+str.indexOf("o"); // 4 (первая 'o')
+str.lastIndexOf("o"); // 7 (последняя 'o')
+
+// 5. slice - вырезать часть
+str.slice(0, 5); // "Hello"
+str.slice(6); // "World"
+
+// 6. replace - заменить
+str.replace("World", "JavaScript"); // "Hello JavaScript"
+
+// 7. split - разбить на массив
+str.split(" "); // ["Hello", "World"]
+"a,b,c".split(","); // ["a", "b", "c"]
+
+// 8. trim - убрать пробелы
+"  hello  ".trim(); // "hello"
+
+🏷️ ОБЪЕКТЫ (Object)
+1. Основные для работы:
+// СОЗДАНИЕ/ДОСТУП
+obj.key = value        // добавить/изменить свойство
+obj['key'] = value     // то же через []
+delete obj.key         // удалить свойство
+
+// ПРОВЕРКА
+'key' in obj           // есть свойство?
+obj.hasOwnProperty('key') // есть собственное свойство?
+
+// ПЕРЕБОР
+Object.keys(obj)       // массив ключей
+Object.values(obj)     // массив значений  
+Object.entries(obj)    // массив пар [ключ, значение]
+
+// КОПИРОВАНИЕ
+Object.assign({}, obj) // копировать объект
+{...obj}               // spread оператор (копия)
+
+// ЗАМОРОЗКА
+Object.freeze(obj)     // сделать объект неизменяемым
+Object.seal(obj)       // запретить добавлять/удалять свойства
+
+2. Самые важные (выучить в первую очередь):
+
+
+let user = {name: "John", age: 30, city: "NY"};
+
+// 1. Доступ к свойствам
+user.name; // "John" (точка)
+user["age"]; // 30 (скобки)
+
+// 2. Object.keys - все ключи
+Object.keys(user); // ["name", "age", "city"]
+
+// 3. Object.values - все значения
+Object.values(user); // ["John", 30, "NY"]
+
+// 4. Object.entries - пары ключ-значение
+Object.entries(user); // [["name", "John"], ["age", 30], ["city", "NY"]]
+
+// 5. Проверка свойства
+"name" in user; // true
+user.hasOwnProperty("age"); // true
+
+// 6. Копирование объекта
+let userCopy = {...user}; // или Object.assign({}, user)
+
+// 7. Удаление свойства
+delete user.city;
+
+🔢 ЧИСЛА (Number)
+Обязательные:
+
+// ПРЕОБРАЗОВАНИЕ
+Number(str)           // строка → число
+parseInt(str)         // строка → целое число  
+parseFloat(str)       // строка → дробное число
+num.toString()        // число → строка
+
+// ПРОВЕРКИ
+isNaN(value)          // Not a Number?
+Number.isInteger(num) // целое число?
+Number.isFinite(num)  // конечное число?
+
+// ОКРУГЛЕНИЕ
+Math.round(num)       // округлить
+Math.floor(num)       // округлить вниз
+Math.ceil(num)        // округлить вверх
+Math.trunc(num)       // отбросить дробную частьсщтыщдуюдщ
+
+// МАТЕМАТИКА
+Math.abs(num)         // модуль числа
+Math.max(a, b, c)     // максимум
+Math.min(a, b, c)     // минимум
+Math.pow(base, exp)   // степень
+Math.sqrt(num)        // квадратный корень
+Math.random()         // случайное число 0-1
+
+//ДАТЫ (Date)
+new Date()                    // текущая дата/время
+Date.now()                    // timestamp (мс с 1970)
+
+let date = new Date();
+
+date.getFullYear()            // год (4 цифры)
+date.getMonth()               // месяц (0-11!)
+date.getDate()                // день месяца (1-31)
+date.getDay()                 // день недели (0-6)
+date.getHours()               // часы (0-23)
+date.getMinutes()             // минуты
+date.getSeconds()             // секунды
+date.getTime()                // timestamp
+
+date.toDateString()           // дата в читаемом виде
+date.toTimeString()           // время в читаемом виде
+date.toLocaleDateString()     // локализованная дата
+
+
+
+
+// ====== РАБОТА С ЧИСЛАМИ ======
+// Проверка положительное/отрицательное
+if (num > 0) {}
+if (num < 0) {}
+Math.abs(num) // модуль
+
+
+// ====== РАБОТА СО СТРОКАМИ ======
+str.length // длина
+str[i] // символ по индексу
+str.toUpperCase() // в верхний регистр
+str.toLowerCase() // в нижний регистр
+str.includes("текст") // содержит ли
+str.split(" ") // разбить по пробелу в массив
+
+
+// ====== ЦИКЛЫ ======
+while( условие ) {
+  // тело цикла
+}
+
+do {
+    // тело цикла
+} while( условие )
+
+for(начальное.значение; условие; шаг.цикла) {
+    // тело цикла
+}
+
+{continuе;}  // Цикл сразу переходит на следующую итерацию. Код, который находится после данной команды, не запускается.
+{breaк;} // Цикл полностью останавливает работу и начинает выполняться код, находящийся после цикла.
+
+
+// ====== РАБОТА С МАССИВАМИ ======
+arr.length // длина массива
+arr[i] // элемент по индексу
+arr.push(element) // добавить в конец
+arr.pop() // удалить последний
+arr.shift() // удалить первый
+arr.includes(item) // содержит ли
+arr.indexOf(item) // содержет ли (вернет индекс элемента)
+
+
+// Циклы по массиву:
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+
+// ====== РАБОТА С ОБЪЕКТАМИ ======
+obj.key // доступ по ключу
+obj["key"] // альтернативный доступ (если название ключа это 2 слова то пишем только в данном типе)
+obj.some = 'hello' // добавление ключа в объект
+delete obj.some // удаление ключа (обращение к ключу может быть разного типа )
+Object.keys(obj) // массив ключей
+Object.values(obj) // массив значений
+
+// Цикл по объекту:
+for (let key in obj) {
+  console.log(key, obj[key]);
+}
+
+
+// ====== MAP и SET ======
+
+//map
+const map = new Map(); // создали пустую коллекцию
+const map1 = new Map([['ключ', значение], ['second', 2]]);
+
+set(ключ, значение) //устанавливает значение;
+get(ключ) //возвращает значение;
+has(ключ) //проверяет наличие переданного ключа;
+values() //возвращает итерируемый объект всех значений коллекции;
+keys() //возвращает итерируемый объект всех ключей коллекции;
+entries() //возвращает итерируемый объект пар [ключ, значение];
+delete(ключ) //удаляет конкретное значение;
+clear() //полностью очищает коллекцию;
+forEach(колбэк) //перебирает ключи и значения коллекции;
+size //показывает количество элементов в коллекции. Работает так же, как свойство length.
+
+//set
+const setCollection1 = new Set(); // создали пустую коллекцию
+const setCollection2 = new Set(['string', 1,  true, 'any']);
+
+add() //добавить элемент.
+delete(el) //удалить элемент.
+has() //проверить, есть ли элемент в коллекции.
+clear() //очистить коллекцию.
+size //показывает количество элементов в коллекции, работает так же, как свойство length.
+
+Проходить.по.элементам.коллекции.можно.с.помощью.цикла.for.of
+
+for (let elem of setCollection2) {
+    console.log(elem); // string, 1, true, any 
+}
+
+
+// ====== ОБЩИЕ ПРИНЦИПЫ ======
+
+// Функция:
+
+function имяФункции(параметр) {
+  // код
+  return результат;
+}
+
+// стрелочная
+(аргументы) => { тело.функции }
+
+
+
+
+// Условия:
+if (условие)
+  // если true
+} else {
+  // если false
+}
+
+
+//======= АСИНХРОННОЕ ПРОГРАМИРОВАНИЕ ======
+
+const promise = new Promise((resolve, reject) => {
+  // Асинхронная операция
+  setTimeout(() => {
+    const success = true;
+    if (success) {
+      resolve("Операция успешна!");
+    } else {
+      reject("Ошибка операции!");
+    }
+  }, 1000);
+});
+
+
+// МЕТОДЫ
+
+.then()    //- обработка успешного выполнения
+.catch()   //- обработка ошибок
+.finally() //- выполняется в любом случае
+
+// Статические методы Promise
+
+Promise.all()        //ожидает выполнения всех промисов
+Promise.race()       //возвращает первый завершенный промис
+Promise.allSettled() //ждет завершения всех промисов
+Promise.any()        //возвращает первый успешно выполненный промис
+
+
+// Запросы к стороннему API
+
+fetch('адрес ресурса')
+JSON.stringify() // чтобы из обычного объекта создать JSON;
+JSON.parse()     // чтобы из JSON сделать обычный объект.
+
+try {
+    функция();
+} catch (err) {
+    console.log('Что-то пошло не так —', err.message)
+}
+
+
+//=============== DOM ==============
+
+('#айди')
+('.класс')
+
+document.querySelector   //позволяет достучаться до элемента по его селектору;
+document.querySelectorAll//то же самое, только он выбирает все элементы с таким селектором. Его можно использовать, например, с классами.
+document.getElementById  //получает доступ к элементу по его идентификатору;
+
+document.getElementsByClassName('классы(ы)');// достаёт из разметки все элементы с определённым классом.
+element.getElementsByClassName('класс(ы)');  // поиск от элемента, на котором использовали этот метод
+element.getAttribute('атрибут')              // значение атрибута
+element.setAttribute('аттрибут', 'значение') // создать атрибут 
+element.removeAttribute('аттрибут')          // удаляет атрибут элемента
+createElement            //Этот метод создаёт новый элемент
+element.textContent = "Ваша строка!" // контент строки
+el.innerHTML // получает или изменяет HTML-разметку внутри
+el.outerHTML // возвращает HTML-значение вместе с элементом
+document.createTextNode("строка") //это метод, который создаёт текстовый узел.
+
+appendChild   //добавить дочерний элемент в конец родительского
+removeChild   //удаляет дочерний элемент из родительского
+
+
+classList                        // манипуляция классами
+element.classList.add("класс");  // добавить класс
+classList.remove                 // удалить класс
+classList.toggle                 // Он удаляет класс, если он есть на элементе, и добавляет, если его там нет.
+element.classList.replace('что заменить', 'на что заменить')  // меняет классы
+classList.contains // уточняет, содержит ли элемент переданный класс. Результат — булевое значение. Есть класс — true. Нет класса — false.
+element.addEventListener('click, submit, change, keydown и тд', function () {
+  // ваша логика здесь
+})
+removeEventListener //удаляет слушатель событий
+
+
+window.innerWidth //возвращает ширину той области, которую видит пользователь. То есть то, что внутри окна,
+                  //с горизонтальной прокруткой. Если вы измените размер окна, то это значение тоже поменяется.
+window.outerWidth //возвращает полную ширину браузера вместе со элементами интерфейса.
+clientWidth       //возвращает ширину без учета скролбара и бордеров
+clientHeight      //возвращает высоту без учета скролбара и бордеров
+
+element.getBoundingClientRect()
+left // координата по оси X от начала до левой стороны элемента.
+right // координата по оси X от начала до правой стороны элемента.
+top // координата по оси Y от начала до верхней стороны элемента.
+bottom // координата по оси Y от начала до нижней стороны элемента
+
+event.pageX/pageY //координаты отностельно документа
+event.clientX/clientY //координаты относительно окна
+
+pageYOffset //свойство, которое возвращает число, на которое прокручено окно window.
+offsetHeight // отдаёт высоту элемента с паддингами, скроллбарами и бордерами.
+scrollTo // метод, который прокручивает страницу до определенного значения.
+
+DOMContentLoaded // событие, которое срабатывает после того, как браузер создал DOM-дерево.
+
+
+// =================== API БРАУЗЕРА ==============================
+
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const { coords } = position;
+    console.log(coords.latitude, coords.longitude);
+  });
+}   //доступ к местоположению пользователя
+
+watchPosition //получение и регулярное обновление данных о положении.
+
+//Для запроса разрешения на уведомления имеется специальный метод 
+Notification.requestPermission //который возвращает promise с результатом, 
+//разрешил ли пользователь отправку уведомлений.
+
+
+Notification.requestPermission().then(function(permission) {});
+//Если пользователь дал доступ на отправку уведомлений, то можно отправлять сообщения пользователю, используя класс Notification.
+
+new Notification("Hello!")
+
+
+//медиа запросы в js
+if (window.matchMedia("(min-width: 400px)").matches) {
+  // Эта часть выполнится, если ширина области просмотра >=400px
+} else {
+  // Эта часть выполнится, если ширина области просмотра < 400px
+}
+
+
+//Работа с WebSocket в браузере представлена классом WebSocket. Для открытия WebSocket-соединения необходимо 
+// создать экземпляр класса WebSocket.
+
+const websocket = new WebSocket('wss://ws.ifelse.io/');
+//Есть несколько событий слежения за websocket-соединением:
+
+open // срабатывает, когда соединение готово отсылать и принимать данные;
+close // срабатывает, когда соединение закрывается;
+message // событие, обрабатывающее все получаемые сообщения;
+error // срабатывает, когда происходит ошибка соединения.
+//Также есть несколько методов:
+
+websocket.send(message)  //отправка данных по WebSocket-соединению;
+websocket.close()     //закрытие соединения.
+
+
+//===================== ТЕСТИРОВАНИЕ =====================
+
+// Тест Кейсы (описание сценариев)
+//         ↓
+//     [Разработка]
+//         ↓
+// Corner Cases (проверки в коде)
+//         ↓
+// Unit Tests (автоматические тесты)
+
+//Полный синтаксис describe:
+// условный script.js для основного кода => script.test.js импортируем что то для теста и используем 
+
+//script.js:
+
+//какой-то код
+module.exports = 'функция' // экспорт функции
+
+//script.test.js
+const anything = require('./путь до script.js'); // ипорт функции
+
+describe('Название группы тестов', () => {
+  // внутри пишем отдельные тесты
+  test('описание что проверяем', () => {
+    //expect('что_тестируем').матчер('ожидаемое_значение')
+  });
+  
+  test('еще один тест', () => {
+    // другие проверки
+  });
+});
+
+
+// =================== препроцессор SASS =================
+
+$названиепеременной:'любое значение: px, color, и тд';
+//можно создать отдельный фаил "variables.scss" с переменными и с помощью
+//@import"variables"; просто записывать эти переменные в base.scss
+
+//Условно написание вложенных правил выглядит следующим образом:
+
+//       <селектор>{
+//           стили селектора
+
+//           <вложенный селектор>{
+//               стили селектора
+//               также используя '&' мы обращаемся к текущему селектору, например чтобы задать ховер
+//               &:hover{
+//               }
+//           }
+//             
+//       }
+
+
+//Объявление миксина:
+
+@mixin <название миксина> <(перечисление аргументов через запятую, если необходимо)> {
+	/* CSS */
+}
+
+//Использование миксина:
+
+<селектор> {
+	//@include <название миксина> <(указание аргументов в том же порядке, который описан в миксине)>;
+	/* собственный CSS */
+} 
+
+
+//========== JS и CSS модули ==========
+
+JS
+
+Чтобы сделать переменные, функции и классы в модуле доступными для других модулей, необходимо использовать директиву export.
+export const sum = (a, b) =>  a + b; просто пишем export перед обьектом
+
+import { sum, anything, перечисляем имена наших экспортов } from(откуда) './math.js';  -> импорт - экспорт каких либо обьектов из кода в код 
+
+
+Существует также дефолтный импорт или экспорт. Его обычно используют, чтобы выделить ту функцию,
+переменную или класс, которая является главной в данном модуле и представляет собой его основной функционал.
+
+export default sum
+
+А как быть, если мы пытаемся импортировать функцию, название которой уже использовано в нашем коде?
+Для разрешения конфликтов имён можно использовать псевдонимы в импорте.
+
+import { sum as mathSum } from './math.js';
+console.log( mathSum(4) );
+
+Ну и наконец, используя import *, можно импортировать все публичные элементы модуля:
+
+import * as math from './math.js';
+console.log( math.circleArea(5) );   
+console.log( math.sum(1,2) );
+
+CSS
+
+компиляция CSS-модулей и использования import для подгрузки CSS-стилей в JS-файл.
+
+/* components/submit-button.js */
+import styles from './submit-button.css';
+
+buttonElem.outerHTML = `<button class=${styles.button}>Submit</button>`
+
+Чтобы в CSS-модулях иметь возможность использовать только одно имя класса,
+но при этом не дублировать базовые стили кнопки для error и disabled,
+используется ключевое слово composes. Оно помогает повторно использовать
+уже объявленные в другом селекторе стили.
+
+.button {
+  /* basic styles for button */
+}
+.disabled {
+  composes: button;
+  /* anything that only applies to Disabled */
+}
+.error {
+  composes: button;
+  /* anything that only applies to Error */
+}
+
+Кроме того, CSS-модули позволяют нам с помощью composes ссылаться на стили из другого файла:
+
+/* colors.css */
+
+.primary {
+
+  color: #720;
+}
+
+/* submit-button.css */
+
+.common { /* font-sizes, padding, border-radius */ }
+
+.normal {
+
+  composes: common;
+  composes: primary from "../shared/colors.css";
+
+
+//================ REACT =====================
+
+// Компонент, который принимает пропс
+function Greeting({ name }) {
+  return <h1>Привет, {name}!</h1>;
+}
+
+// Использование компонента с пропсом
+function App() {
+  return <Greeting name="Анна" />;
+}
+
+<SearchTaskForm onSearchInput={func}/> -> пропы нужно называть так: сначала префикс "on" -> далее какой элемент, в этом случае SearchTaskForm, значит "Search" -> далее событие, тут "Input"
+
+
+// ПАТЕРНЫ:
+
+// 1)Children callback
+
+function ThemeInfo({ children }) {
+  const theme = 'dark';
+  const accent = '#ff6b00';
+  // children — функция, получает theme и accent
+  return children(theme, accent);
+}
+// использование:
+<ThemeInfo>
+  {(theme, accent) => (
+    <div style={{ color: accent }}>
+      Текущая тема: {theme}
+    </div>
+  )}
+</ThemeInfo>
+
+
+// 2)Render prop
+
+function Counter({ render }) {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount((prev) => prev + 1);
+  return render(count, increment);
+}
+
+function App() {
+  return (
+    <Counter
+      render={(count, increment) => (
+        <div>
+          <p>Счётчик: {count}</p>
+          <button onClick={increment}>Увеличить</button>
+        </div>
+      )}
+    />
+  );
+}
+
+//children callback и render props похожи,
+//только различаются тем, что в childCallback 
+//фукция внутри компонента, а renderProps
+//это функция, которая передается как пропс
+
+
+// 3)Proxy компонент
+
+// Базовый компонент
+const Par = ({ color, children, fz }) => (
+  <p style={{ backgroundColor: color, fontSize: fz}}>{children}</p>
+);
+// Proxy-компонент: фиксирует цвет и текст, всё проксирует в Par
+const ProxyPar = (props) => (
+  <Par color="green" {...props}>
+    Привет из Proxy
+  </Par>
+);
+const App = () => (
+  <div>
+    <Par color="red">Обычный параграф</Par>
+    <ProxyPar fz={'30px'}/> {/* тот же Par, но с преднастроенными пропсами */}
+  </div>
+);
+export default App;
+
+
+//4)Layout-компонент
+
+const Layout = ({ children }) => {
+  return (
+    <div>
+      {/* Это будет на КАЖДОЙ странице */}
+      <header>
+        Мой Сайт
+      </header>
+      
+      <nav>
+        Меню: Главная | О нас | Контакты
+      </nav>
+      
+      {/* Здесь будет УНИКАЛЬНЫЙ контент каждой страницы */}
+      <main>
+        {children}
+        {/*children-это и есть тот самый уникальный контент*/}
+      </main>
+      
+      {/* Это тоже будет на каждой странице */}
+      <footer>
+        © 2024 Все права защищены
+      </footer>
+    </div>
+  );
+};
+
+// Теперь создаем разные страницы, используя один Layout
+
+// Главная страница
+const HomePage = () => {
+  return (
+    <Layout>
+      <h1>Добро пожаловать!</h1>
+      <p>Это главная страница</p>
+    </Layout>
+  );
+};
+
+// Страница "О нас"
+const AboutPage = () => {
+  return (
+    <Layout>
+      <h1>О нашей компании</h1>
+      <p>Мы лучшие!</p>
+    </Layout>
+  );
+};
+
+
+//5)Container-компонент
+
+//container компонент получает данные и передает
+//их в другой компонент который их будет "рисовать"
+
+// CONTAINER - добывает данные
+const WeatherContainer = () => {
+  // 1️ Контейнер получает данные
+  const [temp, setTemp] = useState(22);
+  
+  // 2️ Контейнер передает данные в компонент отображения
+  return <WeatherDisplay temperature={temp} />;
+};
+
+// КОМПОНЕНТ ОТОБРАЖЕНИЯ - просто показывает
+const WeatherDisplay = ({ temperature }) => {
+  return <div>Сейчас {temperature} градусов</div>;
+};
+
+
+//6)HOC компонент
+//HOC - это функция, которая берет компонент
+//и возвращает этот же компонент, но с дополнительными возможностями
+
+// Обычный компонент 
+const Button = ({ text }) => {
+  return <button>{text}</button>;
+};
+
+// HOC - добавляет стиль 
+const withRedBackground = (WrappedComponent) => {
+  // Возвращает НОВЫЙ компонент с дополнительными возможностями
+  return (props) => (
+    <div style={{ backgroundColor: 'red', padding: '10px' }}>
+      <WrappedComponent {...props} />
+    </div>
+  );
+};
+
+// Улучшаем нашу кнопку через HOC
+const RedButton = withRedBackground(Button);
+
+// Использование
+const App = () => (
+  <div>
+    <Button text="Обычная кнопка" />
+    <RedButton text="Кнопка с красным фоном" />
+  </div>
+);
