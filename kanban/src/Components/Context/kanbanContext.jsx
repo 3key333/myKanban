@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const KanbanContext = createContext(null)
 
@@ -9,9 +9,27 @@ const initialState = {
     Finished: [],
 }
 
+// localStorage
+const getInitialState = () => {
+    try{
+        const saved = localStorage.getItem('kanban')
+        if(saved){
+            const savedParsed = JSON.parse(saved)
+            return savedParsed
+        }
+    }catch (error) {}
+
+    return { Backlog: [], Ready: [], 'In Progress': [], Finished: [] }
+}
+
+//Provider context
 export const KanbanProvider = ({children}) => {
     
-    const [columns , setColumns] = useState(initialState)
+    const [columns , setColumns] = useState(getInitialState)
+
+    useEffect(() => {
+        localStorage.setItem('kanban', JSON.stringify(columns))
+    }, [columns])
     
     const addTask = (columName , taskTitle) => {
         setColumns(previous => ({

@@ -1,6 +1,9 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import './card.scss'
 import { KanbanContext } from '../Context/kanbanContext'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import TaskInfo from '../TaskInfo/TaskInfo'
+import { useNavigate } from 'react-router-dom'
 
 
 const Card = (props) => {
