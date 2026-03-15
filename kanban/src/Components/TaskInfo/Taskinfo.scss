@@ -1,0 +1,35 @@
+.task-info{
+    background-color: #fff;
+    width: 95%;
+
+    .task-info-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-top: 40px;
+        padding: 0px 40px 0px 40px;
+    }
+
+    .task-info-text{
+        padding: 40px 0px 0px 40px;
+
+        .task-info-textarea{
+            width: 95%;
+            min-height: 120px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    }
+}
+
+.exit-button {
+    height: auto; 
+    background-color: #fff;
+    border: 0;
+    font-size: 40px;
+    
+    cursor: pointer;
+}
+

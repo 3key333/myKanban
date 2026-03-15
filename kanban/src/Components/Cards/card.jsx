@@ -1,9 +1,7 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import './card.scss'
+import { Link } from 'react-router-dom'
 import { KanbanContext } from '../Context/kanbanContext'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import TaskInfo from '../TaskInfo/TaskInfo'
-import { useNavigate } from 'react-router-dom'
 
 
 const Card = (props) => {
@@ -46,7 +44,11 @@ const Card = (props) => {
                 </div>
 
                 <div className="card-tasks">
-                    {(columns[title] || []).map((task, index) => (<div key={index} className='task'>{task}</div>) )}
+                    {(columns[title] || []).map((task, index) => (
+                        <Link key={index} to="/task" state={{ taskTitle: task, column: title }} className="task-link">
+                            <div className="task">{task}</div>
+                        </Link>
+                    ))}
                 </div>
 
                 <div className="card-button">

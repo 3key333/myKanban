@@ -11,7 +11,6 @@ import { KanbanContext } from '../Context/kanbanContext'
 const Layout = () => {
 
     const { columns } = useContext(KanbanContext)
-    console.log(columns.Backlog.length)
 
     const cardsData = ['Backlog', 'Ready', 'In Progress', 'Finished']
 
