@@ -89,3 +89,20 @@ main{
         margin-bottom: 5px;
     }
 }
+
+
+// MEDIA
+
+.header-avatar > a{
+    display: none; 
+}
+
+@media(max-width:451px){
+    main{
+        display: block;
+    }
+
+    .header-avatar > a{
+        display: flex; 
+    }
+}

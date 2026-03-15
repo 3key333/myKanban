@@ -17,9 +17,9 @@ const usePortal = () => {
             <div style={{
                 position: 'absolute',
                 top: 0,
-                left: 1300,
+                left: 305,
                 right: 0,
-                bottom: 0,
+                bottom: 505,
                 zIndex: 0,
                 display: 'flex',
                 alignItems: 'center',

@@ -56,7 +56,7 @@ const Layout = () => {
                 <div className="tasks-info">
                     <p>Active tasks: {columns.Backlog.length}</p>
 
-                    <p>Finished tasks: {columns['Finished'].length}</p>
+                    <p>Finished tasks: {columns.Finished.length}</p>
                 </div>
 
                 <p>Kanban board by  Ilya, 2026</p>

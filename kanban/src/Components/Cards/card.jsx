@@ -45,7 +45,7 @@ const Card = (props) => {
 
                 <div className="card-tasks">
                     {(columns[title] || []).map((task, index) => (
-                        <Link key={index} to="/task" state={{ taskTitle: task, column: title }} className="task-link">
+                        <Link key={index} to='/task' state={{ taskTitle: task, column: title }} className="task-link">
                             <div className="task">{task}</div>
                         </Link>
                     ))}
@@ -63,7 +63,11 @@ const Card = (props) => {
 
                     {/* ДЛЯ КАРТОЧКИ READY  */}
 
-                    {title==='Ready' ? <button onClick={handlerClickOpenDropDown}>{isOpenDropDown===true?'Close':'Open'}</button> : <></>}
+                    {title==='Ready' ?
+                     <button onClick={handlerClickOpenDropDown} disabled={columns.Backlog.length === 0}>
+                        {isOpenDropDown===true?'Close':'Open'}
+                     </button> : <></>}
+
                     {title==='Ready' && isOpenDropDown ?
                     <div className='ready-dropDown'>
                         {(columns['Backlog'] || []).map((task, index) => (
@@ -76,7 +80,11 @@ const Card = (props) => {
                     
                     {/* ДЛЯ КАРТОЧКИ In Progress */}
 
-                    {title==='In Progress' ? <button onClick={handlerClickOpenDropDown}>{isOpenDropDown===true?'Close':'Open'}</button> : <></>}
+                    {title==='In Progress' ?
+                     <button onClick={handlerClickOpenDropDown} disabled={columns.Ready.length === 0}>
+                        {isOpenDropDown===true?'Close':'Open'}
+                     </button> : <></>}
+
                     {title==='In Progress' && isOpenDropDown ?
                     <div className='ready-dropDown'>
                         {(columns['Ready'] || []).map((task, index) => (
@@ -89,7 +97,11 @@ const Card = (props) => {
 
                     {/* ДЛЯ КАРТОЧКИ In Progress */}
 
-                    {title==='Finished' ? <button onClick={handlerClickOpenDropDown}>{isOpenDropDown===true?'Close':'Open'}</button> : <></>}
+                    {title==='Finished' ?
+                     <button onClick={handlerClickOpenDropDown} disabled={columns['In Progress'].length === 0}>
+                        {isOpenDropDown===true?'Close':'Open'}
+                     </button> : <></>}
+
                     {title==='Finished' && isOpenDropDown ?
                     <div className='ready-dropDown'>
                         {(columns['In Progress'] || []).map((task, index) => (

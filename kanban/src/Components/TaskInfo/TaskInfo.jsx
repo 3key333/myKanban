@@ -11,6 +11,7 @@ const TaskInfo = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const { taskTitle, column } = location.state || {}
+    const { columns } = useContext(KanbanContext)
 
     const [description, setDescription] = useState('')
 
@@ -20,9 +21,6 @@ const TaskInfo = () => {
         e.preventDefault()
         isOpen ? closePortal() : openPortal()
     }
-
-    const { columns } = useContext(KanbanContext)
-    console.log(columns)
     return (
         <>
             
@@ -54,7 +52,7 @@ const TaskInfo = () => {
 
                         <div className="task-info-head">
 
-                            <h1 className='task-info-text-title'>{taskTitle}</h1>
+                            <h1 className='task-info-text-title'>{taskTitle || 'Задача не выбрана'}</h1>
 
                             <button className='exit-button' onClick={() => navigate('/')}>✕</button>
 
@@ -79,7 +77,7 @@ const TaskInfo = () => {
                     <div className="tasks-info">
                         <p>Active tasks: {columns.Backlog.length}</p>
 
-                        <p>Finished tasks:{columns.Finished.length}</p>
+                        <p>Finished tasks: {columns.Finished.length}</p>
                     </div>
 
                     <p>Kanban board by  Ilya, 2026</p>
